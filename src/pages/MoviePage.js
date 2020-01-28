@@ -9,9 +9,6 @@ export default class MoviePage extends Component {
   };
 
   getValue = e => {
-    if (e.target.value === "") {
-      return;
-    }
     this.setState({ value: e.target.value });
   };
 
@@ -23,6 +20,9 @@ export default class MoviePage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    if (this.state.value === "") {
+      return;
+    }
     console.log(this.props.history.location.pathname);
     this.props.history.push(`?query=${this.state.value}`);
     this.fetchMovies(this.state.value);

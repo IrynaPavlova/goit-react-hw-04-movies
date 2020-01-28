@@ -1,19 +1,35 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Route, Switch } from "react-router-dom";
-import HomePage from "../pages/HomePage";
-import MoviePage from "../pages/MoviePage";
 import Nav from "./nav/Nav";
-import MovieDetailsPage from "./movieDetailsPage/MovieDetailsPage";
+import Loader from "react-loader-spinner";
+
+const HomePage = lazy(() => import("../pages/HomePage"));
+const MoviePage = lazy(() => import("../pages/MoviePage"));
+const MovieDetailsPage = lazy(() =>
+  import("./movieDetailsPage/MovieDetailsPage")
+);
 
 const App = () => {
   return (
     <div>
       <Nav />
-      <Switch>
-        <Route path="/" exact component={HomePage} />
-        <Route path="/movies/:movieId" component={MovieDetailsPage} />
-        <Route path="/movies" exact component={MoviePage} />
-      </Switch>
+      <Suspense
+        fallback={
+          <Loader
+            type="Puff"
+            color="#00BFFF"
+            height={100}
+            width={100}
+            timeout={3000}
+          />
+        }
+      >
+        <Switch>
+          <Route path="/" exact component={HomePage} />} />
+          <Route path="/movies/:movieId" component={MovieDetailsPage} />} />
+          <Route path="/movies" exact component={MoviePage} />} />
+        </Switch>
+      </Suspense>
     </div>
   );
 };
