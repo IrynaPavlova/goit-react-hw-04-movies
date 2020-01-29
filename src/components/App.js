@@ -8,6 +8,7 @@ const MoviePage = lazy(() => import("../pages/MoviePage"));
 const MovieDetailsPage = lazy(() =>
   import("./movieDetailsPage/MovieDetailsPage")
 );
+const DefaultPage = lazy(() => import("../pages/DefaultPage"));
 
 const App = () => {
   return (
@@ -25,9 +26,10 @@ const App = () => {
         }
       >
         <Switch>
-          <Route path="/" exact component={HomePage} />} />
-          <Route path="/movies/:movieId" component={MovieDetailsPage} />} />
-          <Route path="/movies" exact component={MoviePage} />} />
+          <Route path="/" exact component={HomePage} />
+          <Route path="/movies/:movieId" component={MovieDetailsPage} />
+          <Route path="/movies" exact component={MoviePage} />
+          <Route component={DefaultPage} />
         </Switch>
       </Suspense>
     </div>
